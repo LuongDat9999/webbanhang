@@ -1,0 +1,48 @@
+﻿@model Demoapp.Model.AdminUser
+
+@{
+    ViewBag.Title = "DNAdmin";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    <link href="~/Content/mycs/loginstyleCSS.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("XTLogin", "QuanLy", FormMethod.Post))
+{
+    <div class="container-login">
+        <h1>QUẢN LÝ</h1>
+        <h2>LOGIN</h2>
+        <table class="table" >
+
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.RoleUser)
+                </th>
+                <td>
+                    @Html.TextBoxFor(m => m.RoleUser)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.RoleUser)
+                    @if (ViewBag.ErrorId != null)
+                    {
+                        <p>@ViewBag.ErrorId</p>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.PasswordUser)
+                </th>
+                <td>
+                    @Html.PasswordFor(m => m.PasswordUser)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(m => m.PasswordUser)
+                    @if (ViewBag.ErrorPass != null)
+                    {
+                        <p>@ViewBag.ErrorPass</p>
+                    }
+                </td>
+        </table>
+        <button>Đăng nhập</button>
+    </div>
+}

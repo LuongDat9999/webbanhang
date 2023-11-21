@@ -1,0 +1,66 @@
+﻿body {
+    padding-top: 50px;
+}
+
+.div-giohang {
+    max-width: 80%;
+}
+
+.fm-textcard th {
+    width: 100px;
+    color: #6c6d70;
+}
+
+.fm-bin {
+    width: 30px;
+    transition: all 0.3s;
+    background-color: white;
+}
+
+    .fm-bin:hover {
+        transform: scale(1.1);
+    }
+
+.buycontinue {
+    position: absolute;
+    left: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 15px;
+    border-radius: 20px 0;
+    font-size: 1.5em;
+    transition: all 0.4s;
+}
+
+    .buycontinue:hover {
+        transform: scale(1.1);
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+    }
+
+.div-Buy {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+}
+
+.buy {
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 15px;
+    border-radius: 0 20px;
+    font-size: 1.5em;
+    transition: all 0.4s;
+    border: 1px solid black;
+}
+
+    .buy:hover {
+        transform: scale(1.1);
+        color: white;
+        background-color: black;
+    }

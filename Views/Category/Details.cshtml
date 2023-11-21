@@ -1,0 +1,34 @@
+﻿@model Demoapp.Model.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<link href="~/Content/mycs/stylenut.css" rel="stylesheet" />
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDCate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameCate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "ok" }) |
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "quay" })
+</p>

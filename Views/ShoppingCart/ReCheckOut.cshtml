@@ -1,0 +1,47 @@
+﻿@model Demoapp.Model.Cart
+
+@{
+    ViewBag.Title = "ReCheckOut";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div>
+
+    @if (Session["user"]!=null)
+    {
+        <h1 style="text-align:center">Vui lòng xác nhận</h1>
+        <div style="padding-top:50px;position:relative;left:35%;text-align:center;">
+            @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+            {
+                <table class="class=" div-recheckout" style="border-collapse:separate;border-spacing:5px">
+                    <tr>                    
+                        <td>ID người dùng: </td>
+                        <td><input type="number" name="codecustomer" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ giao hàng: </td>
+                        <td><input type="text" name="AddressDeliverry" required /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="CheckOut" class="btn btn-success " />
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    }
+    else
+    {
+        <style>
+            h1, h3, a {
+                text-align:center;
+            }
+        </style>
+        <h1 style="color: red; font-weight:500">Bạn chưa đăng nhập !!!</h1>
+        <h3 style="color: black">Xin mời đăng nhập để tiếp tục mua hàng !!!</h3>
+        <a class="btn btn-primary" href="~/NguoiDung/Login">Đăng nhập</a>
+        /*    {Html.RenderAction("Login", "NguoiDung"); }*/
+    }
+</div>

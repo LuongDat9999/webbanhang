@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "EmptyCart";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<link href="~/Content/mycs/GioHangCSS.css" rel="stylesheet" />
+
+<h2 style="padding-bottom:20px;text-align:center;">GIỎ HÀNG</h2>
+<table class="table fm-textcard">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Hình sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+<div class="div-Buy">
+    <a class="buycontinue" href="@Url.Action("Show","SanPham")">Tiếp tục mua hàng</a>
+</div>
+

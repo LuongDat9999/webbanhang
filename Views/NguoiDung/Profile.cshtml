@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Demoapp.Model.Customer>
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<style>
+    .anh {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+    }
+</style>
+
+<h2>Trang Cá nhân</h2>
+
+@foreach (var pro in Model)
+{
+
+    <div style="padding:10px">
+        @if (Session["user"] != null && Session["user"].ToString() == pro.EmailCus)
+        {
+            <div>
+                @if (pro.ImgCus != null)
+                {
+                    <p>
+                        <img src="@Url.Content(pro.ImgCus)" class="anh" />
+                    </p>
+                }
+                else
+                {
+                    <img src="~/Content/Image/giadinh.jpg" class="anh" />
+                }
+            </div>
+
+            <table class="table">
+
+                <tr>
+                    <th>ID :</th>
+                    <td>@Html.DisplayFor(Model => pro.IDCus)</td>
+
+                </tr>
+                <tr>
+                    <th>Tên :</th>
+                    <td>@Html.DisplayFor(Model => pro.NameCus)</td>
+
+                </tr>
+                <tr>
+                    <th>Email :</th>
+                    <td>@Html.DisplayFor(Model => pro.EmailCus)</td>
+
+                </tr>
+                <tr>
+                    <th>Số điện thoại :</th>
+                    <td>@Html.DisplayFor(Model => pro.PhoneCus)</td>
+
+                </tr>
+                <tr>
+                    <th>Địa chỉ :</th>
+                    <td>@Html.DisplayFor(Model => pro.AddrCus)</td>
+                </tr>
+        
+                  <tr>
+                        <td>
+                            @Html.ActionLink("sửa", "Edit", "NguoiDung", new { id = pro.IDCus }, new { @class = "btn btn-success" })
+                        </td>
+                    </tr>
+            </table>
+
+            <a href="~/NguoiDung/login" class="btn btn-success">
+                Đăng xuất
+            </a>
+        }
+    </div>
+}

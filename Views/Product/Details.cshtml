@@ -1,0 +1,98 @@
+﻿@model Demoapp.Model.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamePro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DecriptionPro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DecriptionPro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro1)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro1)" height="100" width="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro2)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro2)" height="100" width="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro3)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro3)" height="100" width="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePro4)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImagePro4)" height="100" width="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Collection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Collection1.NameCol)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

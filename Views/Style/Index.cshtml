@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Demoapp.Model.Category>
+@foreach (var style in Model)
+{
+    <h5>  @Html.ActionLink( style.NameCate,"Show","SanPham",new {style=style.IDCate}," ")</h5>
+}

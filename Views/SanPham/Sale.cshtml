@@ -1,0 +1,71 @@
+﻿@*@model IEnumerable<Demoapp.Model.Product>*@
+@using Demoapp.Model;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Product>
+
+
+@{
+    ViewBag.Title = "Sale";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<link href="~/Content/mycs/SanPhamCSS.css" rel="stylesheet" />
+
+<div id="SanPham" class="main-prod">
+
+    <h1 style="color: red">SALE</h1>
+        <!--Bảng sản phẩm-->
+        <div class="list-product">
+            @foreach (var pro in Model)
+            {
+                if (pro.Discount > 0)
+                {
+                    <!--Từng Sản phẩm-->
+                    <div class="item-pro">
+                        <div class="pro-image">
+                            <div class="img-1">
+                                <a> <img src="@Url.Content(pro.ImagePro1)" /> </a>
+                            </div>
+                            <div class="img-2">
+                                <a href="/SanPham/DetailPro/@pro.ProductID">
+                                    <img src="@Url.Content(pro.ImagePro2)" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="title-pro">
+                            <p style="padding:10px; height:50px;">
+                                @Html.ActionLink(pro.NamePro, "DetailPro", new { id = pro.ProductID })
+                            </p>
+                            <div class="price-card">
+                                <div class="price-pro">
+                                    @if (pro.Discount > 0)
+                                    {
+                                        <p style=" font-weight:600">
+                                            @((pro.Price) - ((pro.Price * pro.Discount) / 100))
+                                        </p>
+                                        <p style=" text-decoration: line-through; font-weight: 300; "> @Html.DisplayFor(Model => pro.Price)<span>0</span></p>
+                                    }
+                                    else
+                                    {
+                                        <p style=" text-decoration: none; font-weight: 600; "> @Html.DisplayFor(Model => pro.Price)</p>
+                                    }
+                                </div>
+                                <div class="card-pro">
+                                    <a href="/ShoppingCart/AddToCart/@pro.ProductID">
+                                        <img src="~/Content/Images/icon-bag.png" style="width:30px" title="Giỏ Hàng" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+</div>
+
+@(Model.PageCount<Model.PageNumber ? 0 :Model.PageNumber ) /@Model.PageCount
+<div class="MenuPage">
+    @Html.PagedListPager(Model, Page => Url.Action("Sale", new { Page = Page }))
+</div>
+
+

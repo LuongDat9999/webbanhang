@@ -1,0 +1,41 @@
+﻿@model Demoapp.Model.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+<link href="~/Content/mycs/stylenut.css" rel="stylesheet" />
+<h2>Delete</h2>
+
+<h3>Bạn có muốn xóa ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDCate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDCate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameCate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="ok" /> |
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "quay" })
+        </div>
+    }
+</div>

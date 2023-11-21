@@ -1,0 +1,70 @@
+﻿@model Demoapp.Model.Customer
+
+@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    <link href="~/Content/mycs/loginstyleCSS.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("XTLogout", "NguoiDung", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container-login" id="container">
+        <h1>đăng ký</h1>
+        <table class="table">
+            <tr>
+                <td>
+                    <h5> @Html.LabelFor(m => m.NameCus)</h5>
+                    @Html.TextBoxFor(m => m.NameCus)
+                    @Html.ValidationMessageFor(m => m.NameCus)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5> @Html.LabelFor(m => m.EmailCus)</h5>
+
+                    @Html.TextBoxFor(m => m.EmailCus)
+                    @Html.ValidationMessageFor(m => m.EmailCus)
+                    @if (ViewBag.ErrorDk != null)
+                    {
+                        <p>@ViewBag.ErrorDK</p>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5> @Html.LabelFor(m => m.Password)</h5>
+
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>@Html.LabelFor(m => m.Repass)</h5>
+
+                    @Html.PasswordFor(m => m.Repass)
+                    @Html.ValidationMessageFor(m => m.Repass)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5> @Html.LabelFor(m => m.PhoneCus)</h5>
+
+                    @Html.TextBoxFor(m => m.PhoneCus)
+                    @Html.ValidationMessageFor(m => m.PhoneCus)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5> @Html.LabelFor(m => m.AddrCus)</h5>
+
+                    @Html.TextBoxFor(m => m.AddrCus)
+                    @Html.ValidationMessageFor(m => m.AddrCus)
+                </td>
+            </tr>
+        </table>
+        <button>đăng ký</button>
+    </div>
+}
+

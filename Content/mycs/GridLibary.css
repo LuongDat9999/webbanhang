@@ -1,0 +1,51 @@
+﻿    body {
+
+}
+.Grid{
+   width:100%;
+   display:block;
+   padding:0;
+}
+ .Grid.wide{
+     max-width:1200px;
+     margin:0 auto;
+ }
+ .row{
+     display:flex;
+     flex-wrap:wrap;
+     margin:auto -4px;
+ }
+ .col{
+     
+ }
+
+ /* Tablet */
+ @media(min-width: 740px) and (max-width:1023px){
+    .wide{
+        width :640px;
+    }
+ }
+
+/* Lon hon Tablet */
+@media(min-width: 740px) {
+    .row {
+        margin:auto -8px;
+    }
+}
+
+/* Lon hon PC low */
+@media(min-width: 1131px) {
+    .row {
+        margin: auto -12px;
+    }
+}
+
+ /* PC low resolution */
+@media(min-width: 1024px) and (max-width:1039px) {
+    .wide {
+        width: 984px;
+    }
+        .wide .row {
+            margin: auto -12px;
+        }
+}

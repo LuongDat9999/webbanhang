@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebBanQuanAoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblBill">
+    <Key>
+      <PropertyRef Name="IDBill" />
+    </Key>
+    <Property Name="IDBill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BillDate" Type="DateTime" Precision="0" />
+    <Property Name="IDStaff" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="TotalPay" Type="Double" />
+    <Property Name="codeCus" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="tblCustumer" Relationship="Self.FK__tblBill__codeCus__45F365D3" FromRole="tblBill" ToRole="tblCustumer" />
+    <NavigationProperty Name="tblStaff" Relationship="Self.FK__tblBill__IDStaff__44FF419A" FromRole="tblBill" ToRole="tblStaff" />
+    <NavigationProperty Name="tblDetailBills" Relationship="Self.FK__tblDetail__IDBil__48CFD27E" FromRole="tblBill" ToRole="tblDetailBill" />
+  </EntityType>
+  <EntityType Name="tblCustumer">
+    <Key>
+      <PropertyRef Name="codeCus" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codeCus" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameCus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="addressCus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="phoneCus" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Name="emailCus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblBills" Relationship="Self.FK__tblBill__codeCus__45F365D3" FromRole="tblCustumer" ToRole="tblBill" />
+  </EntityType>
+  <EntityType Name="tblDetailBill">
+    <Key>
+      <PropertyRef Name="IDBill" />
+      <PropertyRef Name="CodeProduct" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDBill" Type="Int32" Nullable="false" />
+    <Property Name="CodeProduct" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="QuantityProduct" Type="Int32" />
+    <Property Name="PriceProductBuying" Type="Double" />
+    <Property Name="TotalMoney" Type="Double" />
+    <NavigationProperty Name="tblBill" Relationship="Self.FK__tblDetail__IDBil__48CFD27E" FromRole="tblDetailBill" ToRole="tblBill" />
+    <NavigationProperty Name="tblProduct" Relationship="Self.FK__tblDetail__CodeP__49C3F6B7" FromRole="tblDetailBill" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="codeProduct" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codeProduct" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nameProduct" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="descriptionProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idSup" Type="Int32" />
+    <Property Name="quantityProductInput" Type="Int32" />
+    <Property Name="priceProductInput" Type="Double" />
+    <Property Name="colorPro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sizePro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="genderUse" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="IDStyle" Type="Int32" />
+    <Property Name="imageProduct1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imageProduct2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imageProduct3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblDetailBills" Relationship="Self.FK__tblDetail__CodeP__49C3F6B7" FromRole="tblProduct" ToRole="tblDetailBill" />
+    <NavigationProperty Name="tblStyle" Relationship="Self.FK__tblProduc__IDSty__4222D4EF" FromRole="tblProduct" ToRole="tblStyle" />
+    <NavigationProperty Name="tblSupplierProduct" Relationship="Self.FK__tblProduc__idSup__412EB0B6" FromRole="tblProduct" ToRole="tblSupplierProduct" />
+  </EntityType>
+  <EntityType Name="tblStaff">
+    <Key>
+      <PropertyRef Name="IDStaff" />
+    </Key>
+    <Property Name="IDStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StaffName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblBills" Relationship="Self.FK__tblBill__IDStaff__44FF419A" FromRole="tblStaff" ToRole="tblBill" />
+  </EntityType>
+  <EntityType Name="tblStyle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameStyle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__IDSty__4222D4EF" FromRole="tblStyle" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblSupplierProduct">
+    <Key>
+      <PropertyRef Name="idSup" />
+    </Key>
+    <Property Name="idSup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="supplierName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblProducts" Relationship="Self.FK__tblProduc__idSup__412EB0B6" FromRole="tblSupplierProduct" ToRole="tblProduct" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userPass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__tblBill__codeCus__45F365D3">
+    <End Role="tblCustumer" Type="Self.tblCustumer" Multiplicity="0..1" />
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustumer">
+        <PropertyRef Name="codeCus" />
+      </Principal>
+      <Dependent Role="tblBill">
+        <PropertyRef Name="codeCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblBill__IDStaff__44FF419A">
+    <End Role="tblStaff" Type="Self.tblStaff" Multiplicity="0..1" />
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStaff">
+        <PropertyRef Name="IDStaff" />
+      </Principal>
+      <Dependent Role="tblBill">
+        <PropertyRef Name="IDStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblDetail__IDBil__48CFD27E">
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="1" />
+    <End Role="tblDetailBill" Type="Self.tblDetailBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBill">
+        <PropertyRef Name="IDBill" />
+      </Principal>
+      <Dependent Role="tblDetailBill">
+        <PropertyRef Name="IDBill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblDetail__CodeP__49C3F6B7">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="1" />
+    <End Role="tblDetailBill" Type="Self.tblDetailBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="codeProduct" />
+      </Principal>
+      <Dependent Role="tblDetailBill">
+        <PropertyRef Name="CodeProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__IDSty__4222D4EF">
+    <End Role="tblStyle" Type="Self.tblStyle" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStyle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="IDStyle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__idSup__412EB0B6">
+    <End Role="tblSupplierProduct" Type="Self.tblSupplierProduct" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSupplierProduct">
+        <PropertyRef Name="idSup" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="idSup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebBanQuanAoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblBills" EntityType="Self.tblBill" />
+    <EntitySet Name="tblCustumers" EntityType="Self.tblCustumer" />
+    <EntitySet Name="tblDetailBills" EntityType="Self.tblDetailBill" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+    <EntitySet Name="tblStaffs" EntityType="Self.tblStaff" />
+    <EntitySet Name="tblStyles" EntityType="Self.tblStyle" />
+    <EntitySet Name="tblSupplierProducts" EntityType="Self.tblSupplierProduct" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK__tblBill__codeCus__45F365D3" Association="Self.FK__tblBill__codeCus__45F365D3">
+      <End Role="tblCustumer" EntitySet="tblCustumers" />
+      <End Role="tblBill" EntitySet="tblBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblBill__IDStaff__44FF419A" Association="Self.FK__tblBill__IDStaff__44FF419A">
+      <End Role="tblStaff" EntitySet="tblStaffs" />
+      <End Role="tblBill" EntitySet="tblBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblDetail__IDBil__48CFD27E" Association="Self.FK__tblDetail__IDBil__48CFD27E">
+      <End Role="tblBill" EntitySet="tblBills" />
+      <End Role="tblDetailBill" EntitySet="tblDetailBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblDetail__CodeP__49C3F6B7" Association="Self.FK__tblDetail__CodeP__49C3F6B7">
+      <End Role="tblProduct" EntitySet="tblProducts" />
+      <End Role="tblDetailBill" EntitySet="tblDetailBills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__IDSty__4222D4EF" Association="Self.FK__tblProduc__IDSty__4222D4EF">
+      <End Role="tblStyle" EntitySet="tblStyles" />
+      <End Role="tblProduct" EntitySet="tblProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__idSup__412EB0B6" Association="Self.FK__tblProduc__idSup__412EB0B6">
+      <End Role="tblSupplierProduct" EntitySet="tblSupplierProducts" />
+      <End Role="tblProduct" EntitySet="tblProducts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

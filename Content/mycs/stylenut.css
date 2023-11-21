@@ -1,0 +1,63 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to left, #e2e2e2, #efb9b9);
+    padding: 8px 4px 8px 4px;
+}
+
+.quay {
+    background-color: #159513;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+.ok {
+    background-color: #159513;
+    color: aliceblue;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    text-decoration: none;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+h3 {
+    text-transform: uppercase;
+}
+
+.dl-horizontal dd {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}

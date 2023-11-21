@@ -1,0 +1,72 @@
+﻿@model Demoapp.Model.OrderDetail
+
+@{
+    ViewBag.Title = "ChiTietDonHang";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>ChiTietDonHang</h2>
+
+<div>
+    <h4>OrderDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDProduct)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.NamePro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.NamePro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ImagePro1)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.Product.ImagePro1)" height="100" width="100" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPro.Customer.NameCus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderPro.Customer.NameCus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPro.Customer.AddrCus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderPro.Customer.AddrCus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("quay lai", "DonDatHang")
+</p>

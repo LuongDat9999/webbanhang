@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebBanQuanAoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblBill">
+    <Key>
+      <PropertyRef Name="IDBill" />
+    </Key>
+    <Property Name="IDBill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BillDate" Type="date" />
+    <Property Name="IDStaff" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TotalPay" Type="float" />
+    <Property Name="codeCus" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblCustumer">
+    <Key>
+      <PropertyRef Name="codeCus" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codeCus" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="nameCus" Type="nvarchar" MaxLength="150" />
+    <Property Name="addressCus" Type="nvarchar" MaxLength="150" />
+    <Property Name="phoneCus" Type="char" MaxLength="11" />
+    <Property Name="emailCus" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblDetailBill">
+    <Key>
+      <PropertyRef Name="IDBill" />
+      <PropertyRef Name="CodeProduct" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDBill" Type="int" Nullable="false" />
+    <Property Name="CodeProduct" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="QuantityProduct" Type="int" />
+    <Property Name="PriceProductBuying" Type="float" />
+    <Property Name="TotalMoney" Type="float" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="codeProduct" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codeProduct" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="nameProduct" Type="nvarchar" MaxLength="100" />
+    <Property Name="descriptionProduct" Type="nvarchar(max)" />
+    <Property Name="idSup" Type="int" />
+    <Property Name="quantityProductInput" Type="int" />
+    <Property Name="priceProductInput" Type="float" />
+    <Property Name="colorPro" Type="varchar" MaxLength="50" />
+    <Property Name="sizePro" Type="varchar" MaxLength="10" />
+    <Property Name="material" Type="nvarchar" MaxLength="50" />
+    <Property Name="genderUse" Type="nvarchar" MaxLength="5" />
+    <Property Name="IDStyle" Type="int" />
+    <Property Name="imageProduct1" Type="nvarchar(max)" />
+    <Property Name="imageProduct2" Type="nvarchar(max)" />
+    <Property Name="imageProduct3" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblStaff">
+    <Key>
+      <PropertyRef Name="IDStaff" />
+    </Key>
+    <Property Name="IDStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblStyle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameStyle" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblSupplierProduct">
+    <Key>
+      <PropertyRef Name="idSup" />
+    </Key>
+    <Property Name="idSup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supplierName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="100" />
+    <Property Name="userPass" Type="nvarchar(max)" />
+    <Property Name="userRole" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__tblBill__codeCus__45F365D3">
+    <End Role="tblCustumer" Type="Self.tblCustumer" Multiplicity="0..1" />
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustumer">
+        <PropertyRef Name="codeCus" />
+      </Principal>
+      <Dependent Role="tblBill">
+        <PropertyRef Name="codeCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblBill__IDStaff__44FF419A">
+    <End Role="tblStaff" Type="Self.tblStaff" Multiplicity="0..1" />
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStaff">
+        <PropertyRef Name="IDStaff" />
+      </Principal>
+      <Dependent Role="tblBill">
+        <PropertyRef Name="IDStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblDetail__CodeP__49C3F6B7">
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="1" />
+    <End Role="tblDetailBill" Type="Self.tblDetailBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduct">
+        <PropertyRef Name="codeProduct" />
+      </Principal>
+      <Dependent Role="tblDetailBill">
+        <PropertyRef Name="CodeProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblDetail__IDBil__48CFD27E">
+    <End Role="tblBill" Type="Self.tblBill" Multiplicity="1" />
+    <End Role="tblDetailBill" Type="Self.tblDetailBill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBill">
+        <PropertyRef Name="IDBill" />
+      </Principal>
+      <Dependent Role="tblDetailBill">
+        <PropertyRef Name="IDBill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__IDSty__4222D4EF">
+    <End Role="tblStyle" Type="Self.tblStyle" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStyle">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="IDStyle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblProduc__idSup__412EB0B6">
+    <End Role="tblSupplierProduct" Type="Self.tblSupplierProduct" Multiplicity="0..1" />
+    <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSupplierProduct">
+        <PropertyRef Name="idSup" />
+      </Principal>
+      <Dependent Role="tblProduct">
+        <PropertyRef Name="idSup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebBanQuanAoModelStoreContainer">
+    <EntitySet Name="tblBill" EntityType="Self.tblBill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCustumer" EntityType="Self.tblCustumer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDetailBill" EntityType="Self.tblDetailBill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStaff" EntityType="Self.tblStaff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStyle" EntityType="Self.tblStyle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupplierProduct" EntityType="Self.tblSupplierProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblBill__codeCus__45F365D3" Association="Self.FK__tblBill__codeCus__45F365D3">
+      <End Role="tblCustumer" EntitySet="tblCustumer" />
+      <End Role="tblBill" EntitySet="tblBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblBill__IDStaff__44FF419A" Association="Self.FK__tblBill__IDStaff__44FF419A">
+      <End Role="tblStaff" EntitySet="tblStaff" />
+      <End Role="tblBill" EntitySet="tblBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblDetail__CodeP__49C3F6B7" Association="Self.FK__tblDetail__CodeP__49C3F6B7">
+      <End Role="tblProduct" EntitySet="tblProduct" />
+      <End Role="tblDetailBill" EntitySet="tblDetailBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblDetail__IDBil__48CFD27E" Association="Self.FK__tblDetail__IDBil__48CFD27E">
+      <End Role="tblBill" EntitySet="tblBill" />
+      <End Role="tblDetailBill" EntitySet="tblDetailBill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__IDSty__4222D4EF" Association="Self.FK__tblProduc__IDSty__4222D4EF">
+      <End Role="tblStyle" EntitySet="tblStyle" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblProduc__idSup__412EB0B6" Association="Self.FK__tblProduc__idSup__412EB0B6">
+      <End Role="tblSupplierProduct" EntitySet="tblSupplierProduct" />
+      <End Role="tblProduct" EntitySet="tblProduct" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

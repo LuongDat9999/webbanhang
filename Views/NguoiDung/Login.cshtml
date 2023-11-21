@@ -1,0 +1,48 @@
+﻿@model Demoapp.Model.Customer
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    <link href="~/Content/mycs/loginstyleCSS.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("XTLogin", "NguoiDung", FormMethod.Post))
+{
+    <div class="container-login">
+        <h1>đăng nhập</h1>
+        <span>Sử dụng email để đăng nhập</span>
+        <table class="table">
+            <tr>
+                <td>
+                    <h5>
+                        @Html.LabelFor(m => m.EmailCus)
+                    </h5>
+                    @Html.TextBoxFor(m => m.EmailCus)
+                    @Html.ValidationMessageFor(m => m.EmailCus)
+                    @if (ViewBag.ErrorEmail != null)
+                    {
+                        <p>@ViewBag.ErrorEmail</p>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>
+                        @Html.LabelFor(m => m.Password)
+                    </h5>
+
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                    @if (ViewBag.ErrorPass != null)
+                    {
+                        <p>@ViewBag.ErrorPass</p>
+                    }
+                </td>
+            </tr>
+        </table>
+        <button>Đăng nhập</button>
+        <a href="Logout">
+            Đăng ký
+        </a>
+    </div>
+}

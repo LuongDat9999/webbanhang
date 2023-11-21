@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Demoapp.Model.OrderPro>
+
+@{
+    ViewBag.Title = "DonDatHang";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>DonDatHang</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDCus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressDeliverry)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDCus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressDeliverry)
+        </td>
+        <td>
+
+            @Html.ActionLink("Details", "ChiTietDonHang", new { id = item.ID }, new {@class="btn btn-danger"}) 
+        </td>
+    </tr>
+}
+
+</table>

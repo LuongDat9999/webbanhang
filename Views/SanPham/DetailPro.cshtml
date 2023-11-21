@@ -1,0 +1,53 @@
+﻿@model Demoapp.Model.Product
+
+@{
+    ViewBag.Title = "DetailPro";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+
+<div class="prodetail-content row">
+    <div class="prodetail-img col-md-6 row">
+        <div class="boxpro-big col-10">
+            <img src="@Url.Content(Model.ImagePro1)" />
+        </div>
+        <div class="boxpro-small col-2">
+            <img src="@Url.Content(Model.ImagePro1)" />
+            <img src="@Url.Content(Model.ImagePro2)" />
+            <img src="@Url.Content(Model.ImagePro3)" />
+            <img src="@Url.Content(Model.ImagePro4)" />
+        </div>
+    </div>
+    <script language="JavaScript">
+        const bigImage = document.querySelector(".boxpro-big img")
+        const smallImage = document.querySelectorAll(".boxpro-small img")
+        smallImage.forEach(function (imgItem, X) {
+            imgItem.addEventListener("click", function () {
+                bigImage.src = imgItem.src
+            })
+        })
+    </script>
+
+    <div class="prodetail-infor col-md-6">
+        <div class="title-prodetail">
+            <h1>@Html.DisplayFor(Model => Model.NamePro)</h1>
+            <div class="price-discount">
+                <b>@((Model.Price) - ((Model.Price * Model.Discount) / 100))<span style="font-weight:400">đ</span></b>
+                <del>@Html.DisplayFor(Model => Model.Price)<span style="font-weight:400">đ</span></del>
+            </div>
+            <div class="prodetail-buy">
+                <a class="add-card"  id="addToCartLink" href="/ShoppingCart/AddToCart/@Model.ProductID">THÊM VÀO GIỎ HÀNG</a>
+                <a class="add-buy" href="/ShoppingCart/AddToCart/@Model.ProductID" >MUA HÀNG</a>
+            </div>
+
+            <div class="box-descri">
+                <h2>MÔ TẢ SẢN PHẨM</h2>
+                <p>
+                  @Model.DecriptionPro  
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
